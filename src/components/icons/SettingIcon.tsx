@@ -1,7 +1,6 @@
-import { SvgIcon } from "@mui/material";
-import React from "react";
+import SvgIcon from "@mui/material/SvgIcon";
 
-export default function MySettingIcon() {
+function SettingIcon() {
   return (
     <SvgIcon
       sx={{
@@ -30,3 +29,5 @@ export default function MySettingIcon() {
     </SvgIcon>
   );
 }
+
+export default SettingIcon;
