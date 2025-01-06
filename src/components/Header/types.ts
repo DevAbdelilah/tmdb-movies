@@ -8,4 +8,5 @@ export interface Link {
   icon: React.ReactNode;
   icondrop?: React.ReactNode;
   dropdownContent: DropdownContent[];
+  isHighlited: boolean;
 }

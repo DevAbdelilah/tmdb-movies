@@ -12,6 +12,7 @@ export const Links: Link[] = [
     label: "Home",
     icon: <HomeIcon />,
     dropdownContent: [],
+    isHighlited: false,
   },
   {
     label: "Movies",
@@ -44,6 +45,7 @@ export const Links: Link[] = [
           "Stay ahead of the curve with our upcoming movies section. Be the first to know about the next big releases.",
       },
     ],
+    isHighlited: false,
   },
   {
     label: "TV Shows",
@@ -71,6 +73,7 @@ export const Links: Link[] = [
           "Discover critically acclaimed TV shows that have earned high ratings from audiences and critics alike.",
       },
     ],
+    isHighlited: false,
   },
   {
     label: "People",
@@ -93,6 +96,7 @@ export const Links: Link[] = [
           "Discover which famous personalities are celebrating their birthdays today.",
       },
     ],
+    isHighlited: false,
   },
   {
     label: "Trending",
@@ -120,5 +124,6 @@ export const Links: Link[] = [
           "Explore consistently popular content that audiences love across all categories.",
       },
     ],
+    isHighlited: false,
   },
 ];
