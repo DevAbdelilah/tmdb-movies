@@ -3,8 +3,8 @@ import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
 
-import LogoApp from "@/components/icons/logo";
-import MySettingIcon from "@/components/icons/SettingIcon";
+import LogoApp from "@/components/Header/icons/logo";
+import MySettingIcon from "@/components/Header/icons/SettingIcon";
 import LinksList from "@/components/Header/Links";
 
 function Header() {
@@ -12,6 +12,7 @@ function Header() {
     <Stack
       direction={"row"}
       justifyContent={"space-between"}
+      bgcolor={"red"}
       p={2}
       width={"80%"}
       mx={"auto"}

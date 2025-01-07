@@ -60,8 +60,8 @@ function LinkItem({ link, onOpen, activeLink, onClose }: Props) {
       {currentLink && link.dropdownContent.length > 0 && (
         <ClickAwayListener onClickAway={onClose}>
           <Card
-            onMouseEnter={handleMouseEnter} // Ensure dropdown stays open when hovered
-            onMouseLeave={handleMouseLeave} // Ensure dropdown stays open when hovered
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
             sx={{
               position: "absolute",
               top: "100%",
@@ -90,7 +90,7 @@ function LinkItem({ link, onOpen, activeLink, onClose }: Props) {
                         p: 2,
                         borderRadius: 1,
                         "&:hover": {
-                          backgroundColor: "darkgray", // Set the background color to dark gray on hover
+                          backgroundColor: "darkgray",
                           cursor: "pointer",
                         },
                       }}
