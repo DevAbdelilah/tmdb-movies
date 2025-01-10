@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import Stack from "@mui/material/Stack";
-
 import { Links } from "@/components/Header/constants";
 import LinkItem from "@/components/Header/LinkItem";
-import { Link } from "./types";
+
+import Stack from "@mui/material/Stack";
+import { Link } from "@/components/Header/types";
+import { useState } from "react";
 
 function LinksList() {
   const [activeLink, setActiveLink] = useState<Link>();
@@ -24,14 +24,10 @@ function LinksList() {
 
     setActiveLink(_activeLink[0]);
   };
-
-
   return (
     <Stack direction="row" gap={6}>
       {Links.map((link, index) => (
         <LinkItem
-         
-
           key={index}
           link={link}
           onOpen={handleLinkOpen}

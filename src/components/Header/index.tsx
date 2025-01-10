@@ -12,7 +12,6 @@ function Header() {
     <Stack
       direction={"row"}
       justifyContent={"space-between"}
-      bgcolor={"red"}
       p={2}
       width={"80%"}
       mx={"auto"}

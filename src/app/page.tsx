@@ -3,7 +3,7 @@ import Header from "src/components/Header";
 
 export default function Home() {
   return (
-    <Stack>
+    <Stack gap={2}>
       <Header />
     </Stack>
   );
