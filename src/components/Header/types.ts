@@ -1,12 +1,7 @@
-export interface DropdownContent {
-  title: string;
-  description: string;
-}
+import type { ReactNode } from "react";
 
 export interface Link {
   label: string;
-  icon: React.ReactNode;
-  icondrop?: React.ReactNode;
-  dropdownContent: DropdownContent[];
-  isHighlited: boolean;
+  icon: ReactNode;
+  href: string;
 }
