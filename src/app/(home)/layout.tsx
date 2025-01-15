@@ -9,7 +9,7 @@ interface Props {
 }
 function LayoutPage({ children }: Props) {
   return (
-    <Stack width={"80%"} mx={"auto"}>
+    <Stack width={"70%"} mx={"auto"}>
       <Header />
       {children}
       {/* <Footer/> */}
