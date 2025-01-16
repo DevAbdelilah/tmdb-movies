@@ -11,6 +11,7 @@ function LayoutPage({ children }: Props) {
   return (
     <Stack width={"70%"} mx={"auto"}>
       <Header />
+
       {children}
       {/* <Footer/> */}
     </Stack>
