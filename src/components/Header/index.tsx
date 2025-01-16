@@ -12,7 +12,7 @@ function Header() {
         <LogoApp />
         <LinksList />
       </Stack>
-      <Stack direction={"row"} gap={1} alignItems={"center"}>
+      <Stack direction={"row"} gap={4 } alignItems={"center"}>
         <SearchField />
         <MySettingIcon />
       </Stack>

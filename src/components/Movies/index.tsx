@@ -23,6 +23,9 @@ import { ClientProvider } from "../ClientOnlyProvider";
 
 export default function MoviesList() {
   const [randomMovieIndex, setRandomMovieIndex] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
+  const moviesPerPage = 4;
+
   const searchTerm = useAppSelector((state) => state.movies.searchTerm);
   const debouncedSearch = useDebounce(searchTerm, 500);
 
@@ -62,6 +65,7 @@ export default function MoviesList() {
       setRandomMovieIndex(generateRandomIndex(movies));
     }
   }, [movies]);
+
   const handlePrevious = () => {
     if (movies && movies.length > 0) {
       setRandomMovieIndex((prev) =>
@@ -78,49 +82,63 @@ export default function MoviesList() {
     }
   };
 
+  const handleMovieListPrevious = () => {
+    setCurrentPage((prev) => {
+      if (prev === 0) {
+        return Math.floor((movies?.length || 0) / moviesPerPage) - 1;
+      }
+      return prev - 1;
+    });
+  };
+
+  const handleMovieListNext = () => {
+    setCurrentPage((prev) => {
+      const maxPages = Math.floor((movies?.length || 0) / moviesPerPage);
+      if (prev >= maxPages - 1) {
+        return 0;
+      }
+      return prev + 1;
+    });
+  };
+
   const featuredMovie = movies?.[randomMovieIndex] || movies?.[0];
+
+  const getCurrentMovies = () => {
+    if (!movies) return [];
+    const startIndex = currentPage * moviesPerPage;
+    return movies.slice(startIndex, startIndex + moviesPerPage);
+  };
+
+  const visibleMovies = getCurrentMovies();
 
   return (
     <ClientProvider>
-      <Stack direction={"row"} alignItems={"center"} gap={4}>
+      <Stack direction={"row"} alignItems={"center"} gap={2}>
         {isLoading ? (
           <CircularProgress />
         ) : (
-          <Stack gap={10}>
+          <Stack gap={5}>
             <Box
               sx={{
                 position: "relative",
                 width: "100%",
-                height: "800px",
+                height: "1000px",
                 backgroundImage: featuredMovie?.poster_path
                   ? `url(${getPosterUrl(featuredMovie.poster_path)})`
                   : "none",
                 backgroundSize: "cover",
                 borderRadius: "8px",
-                overflow: "hidden",
-                "&::before": {
-                  content: '""',
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  background:
-                    "linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.8))",
-                  zIndex: 1,
-                },
               }}
             >
               <Stack
                 direction="row"
                 sx={{
                   position: "absolute",
-
                   left: "50%",
                   top: "50%",
                   transform: "translate(-50%, -50%)",
                   zIndex: 3,
-                  width: "100%",
+                  width: "1400px",
                   justifyContent: "space-between",
                 }}
               >
@@ -128,7 +146,6 @@ export default function MoviesList() {
                   onClick={handlePrevious}
                   sx={{
                     color: "white",
-
                     backgroundColor: "rgba(0,0,0,0.5)",
                     "&:hover": {
                       backgroundColor: "rgba(0,0,0,0.7)",
@@ -150,6 +167,7 @@ export default function MoviesList() {
                   <ChevronRightIcon sx={{ fontSize: 40 }} />
                 </IconButton>
               </Stack>
+
               <Stack
                 gap={6}
                 sx={{
@@ -189,10 +207,12 @@ export default function MoviesList() {
                   <Typography
                     fontSize={20}
                     fontWeight={400}
+                    alignItems={"center"}
                     gap={2}
                     sx={{ display: "flex" }}
                   >
-                    <StarIcon /> {featuredMovie?.vote_average}
+                    <StarIcon sx={{ color: "warning.main" }} />{" "}
+                    {featuredMovie?.vote_average}
                   </Typography>
                   <Typography fontSize={20} fontWeight={400}>
                     {featuredMovie?.release_date}
@@ -200,11 +220,64 @@ export default function MoviesList() {
                 </Stack>
               </Stack>
             </Box>
-            <Stack direction={"row"} flexWrap={"wrap"} gap={8}>
-              {movies?.map((movie) => (
-                <MovieItem key={movie.id} movie={movie} />
-              ))}
-            </Stack>
+
+            <Typography fontSize={40} fontWeight={500}>
+              Top Movies
+            </Typography>
+
+            <Box
+              sx={{ position: "relative", width: "100%", overflow: "hidden" }}
+            >
+              <Stack
+                direction={"row"}
+                justifyContent={"center"}
+                flexWrap={"nowrap"}
+                gap={3}
+                sx={{
+                  transition: "transform 0.3s ease-in-out",
+                  transform: `translateX(0)`,
+                }}
+              >
+                <Stack
+                  direction="row"
+                  sx={{
+                    position: "absolute",
+                    pt: 22,
+                    zIndex: 3,
+                    width: "100%",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <IconButton
+                    onClick={handleMovieListPrevious}
+                    sx={{
+                      color: "white",
+                      backgroundColor: "rgba(0,0,0,0.5)",
+                      "&:hover": {
+                        backgroundColor: "rgba(0,0,0,0.7)",
+                      },
+                    }}
+                  >
+                    <ChevronLeftIcon sx={{ fontSize: 40 }} />
+                  </IconButton>
+                  <IconButton
+                    onClick={handleMovieListNext}
+                    sx={{
+                      color: "white",
+                      backgroundColor: "rgba(0,0,0,0.5)",
+                      "&:hover": {
+                        backgroundColor: "rgba(0,0,0,0.7)",
+                      },
+                    }}
+                  >
+                    <ChevronRightIcon sx={{ fontSize: 40 }} />
+                  </IconButton>
+                </Stack>
+                {visibleMovies.map((movie) => (
+                  <MovieItem key={movie.id} movie={movie} />
+                ))}
+              </Stack>
+            </Box>
           </Stack>
         )}
       </Stack>

@@ -1,5 +1,6 @@
 // Types for API responses
 export interface Movie {
+    length: number;
     id: number;
     title: string;
     poster_path: string | null;
