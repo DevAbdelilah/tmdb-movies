@@ -22,10 +22,10 @@ function LinkItem({ link }: Props) {
         onClick={() => router.push(link.href)}
         startIcon={link.icon}
         sx={{
-          color: pathname === link.href ? "green" : "white",
+          color: pathname === link.href ? "#a9a9a9" : "black",
           textTransform: "capitalize",
           "&:hover": {
-            backgroundColor: "rgba(255, 255, 255, 0.1)",
+            backgroundColor: "rgba(255, 255, 255, 0.5)",
             color: "gray",
           },
         }}
