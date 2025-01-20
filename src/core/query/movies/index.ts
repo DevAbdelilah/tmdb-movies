@@ -2,7 +2,6 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { baseQuery } from "@/core/query/baseQuery";
 import { Movie, MovieResponse } from "./types";
 
-
 // Define tags for caching
 export const MOVIE_API_REDUCER_KEY = "movieApi";
 
@@ -44,6 +43,13 @@ export const movieApi = createApi({
     getMovieDetails: builder.query<Movie, number>({
       query: (movieId) => ({
         url: `/movie/${movieId}`,
+      }),
+      providesTags: ["Movies"],
+    }),
+    getUpcomingMovies: builder.query<MovieResponse, number>({
+      query: (page = 1) => ({
+        url: `/movie/upcoming`,
+        params: { page },
       }),
       providesTags: ["Movies"],
     }),

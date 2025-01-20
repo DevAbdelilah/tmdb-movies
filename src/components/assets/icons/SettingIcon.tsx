@@ -5,7 +5,7 @@ function SettingIcon() {
     <SvgIcon
       sx={{
         fontSize: "35px",
-        color: "#626264",
+        color: "black",
         transition: "all 0.3s ease-in-out",
         "&:hover": {
           color: "white",

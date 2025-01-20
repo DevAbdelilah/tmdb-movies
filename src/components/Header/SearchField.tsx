@@ -14,16 +14,14 @@ function SearchField() {
       onChange={(event) => dispatch(setSearchTerm(event.target.value))}
       sx={{
         "& .MuiOutlinedInput-root": {
-          color: "#FFF",
+          color: "black",
           "& fieldset": {
-            borderColor: "gray",
+            borderColor: "black",
           },
           "&:hover fieldset": {
-            borderColor: "white",
+            borderColor: "#a9a9a9",
           },
-          "&.Mui-focused fieldset": {
-            borderColor: "gray",
-          },
+
           "& .MuiOutlinedInput-input": {
             height: "20px",
             width: "298px",
@@ -35,7 +33,7 @@ function SearchField() {
       InputProps={{
         startAdornment: (
           <InputAdornment position="start">
-            <Search sx={{ color: "gray" }} />
+            <Search sx={{ color: "black" }} />
           </InputAdornment>
         ),
       }}

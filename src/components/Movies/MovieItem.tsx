@@ -1,9 +1,11 @@
 "use client";
 
-import type { Movie } from "@/core/query/movies/types";
-import { Stack, Typography } from "@mui/material";
 import Card from "@mui/material/Card";
 import StarIcon from "@mui/icons-material/Star";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+
+import type { Movie } from "@/core/query/movies/types";
 
 interface Props {
   movie: Movie;
@@ -55,7 +57,6 @@ function MovieItem({ movie }: Props) {
           />
         </Stack>
 
-        {/* Content container */}
         <Stack
           spacing={1}
           color={"#696969"}
